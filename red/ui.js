@@ -60,7 +60,13 @@ function setupUI(settings) {
     });
     
     app.use("/",express.static(__dirname + '/../public'));
-    
+
+    if (settings.httpPreScript) {
+        app.get("/red/pre.js", function(req,res)  {
+            res.sendfile(settings.httpPreScript);
+        });
+    }
+
     return app;
 }
 
